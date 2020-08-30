@@ -1,0 +1,129 @@
+body {
+	background-color: rgb(240, 240, 240);
+}
+
+#pageTitle {
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	text-align: center;
+}
+
+#mainTable {
+	text-align: left;
+}
+
+td {
+	vertical-align: top;
+}
+
+#canvasTD {
+	width: 100%;
+}
+
+#canvas {
+	border: 1px solid black;
+	background-color: white;
+}
+
+#controlsTD {
+	white-space: nowrap;
+	text-align: right;
+}
+
+.centeredText {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	margin: 0px;
+}
+
+.title {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+label {
+	white-space: nowrap;
+}
+
+.angleRadio {
+	margin: 0px;
+}
+
+input[type="text"] {
+	width: 100px;
+}
+
+#controlsTD form {
+	margin: 0px;
+}
+
+output {
+	display: inline-block;
+	width: 40px;
+	overflow: hidden;
+}
+
+#thetaColor {
+	box-shadow: inset 0px 0px 0px 2px black;
+}
+
+/* The canvas segment colors are pulled from here. Changing this will update the canvas immediately. */
+
+#sinColor {
+	color: red;
+	background-color: red;
+}
+
+#cosColor {
+	color: blue;
+	background-color: blue;
+}
+
+#tanColor {
+	color: green;
+	background-color: green;
+}
+
+#cscColor {
+	color: orange;
+	background-color: orange;
+}
+
+#secColor {
+	color: cyan;
+	background-color: cyan;
+}
+
+#cotColor {
+	color: lightgreen;
+	background-color: lightgreen;
+}
+
+#tanLineColor {
+	box-shadow: inset 0px 0px 0px 2px black;
+}
+
+.valueLabel {
+	padding: 2px;
+	display: block;
+}
+
+.valueLabel span {
+	background-color: white;
+	padding: 0 5px 0 5px;
+}
+
+.valueLabel input {
+	background-color: rgba(255, 255, 255, 0.9);
+	border: 0px;
+	border-radius: 0px;
+	padding: 2px 0 0 0;
+}
+
+.reverse {
+	direction: rtl;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Trig Functions</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://miapuffia.com/scripts/prefix.min.js"></script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+		<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+		<script src="MathJaxConfig.js"></script>
+	</head>
+	<body>
+		<h2 id="pageTitle">Drag the point to see how the trig functions react!</h2>
+		<table id="mainTable">
+			<tr>
+				<td id="canvasTD">
+					<canvas id="canvas" width="800" height="800"></canvas>
+				</td>
+				<td id="controlsTD">
+					<p class="centeredText title">Angle presets:</p>
+					<br>
+					<table>
+						<tr>
+							<td>
+								<button id="angle0">\( 0 ^{\circ} \)</button>
+							</td>
+							<td>
+								<button id="angle30">\( 30 ^{\circ} \)</button>
+							</td>
+							<td>
+								<button id="angle45">\( 45 ^{\circ} \)</button>
+							</td>
+							<td>
+								<button id="angle60">\( 60 ^{\circ} \)</button>
+							</td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td>
+								<button id="anglePlus90">\( + 90 ^{\circ} \)</button>
+							</td>
+							<td>
+								<button id="anglePlus180">\( + 180 ^{\circ} \)</button>
+							</td>
+							<td>
+								<button id="anglePlus270">\( + 270 ^{\circ} \)</button>
+							</td>
+						</tr>
+					</table>
+					
+					<hr>
+					<p class="centeredText title">Line segment lengths:</p>
+					<br>
+					<label class="valueLabel" id="thetaColor">
+						<span>\( \theta \):</span>
+						<input type="text" id="thetaInput" disabled>
+					</label>
+					<label class="valueLabel" id="sinColor">
+						<span>\( \sin(\theta) \):</span>
+						<input type="text" id="sinInput" disabled>
+					</label>
+					<label class="valueLabel" id="cosColor">
+						<span>\( \cos(\theta) \):</span>
+						<input type="text" id="cosInput" disabled>
+					</label>
+					<label class="valueLabel" id="tanColor">
+						<span>\( \tan(\theta) \):</span>
+						<input type="text" id="tanInput" disabled>
+					</label>
+					<label class="valueLabel" id="cscColor">
+						<span>\( \csc(\theta) \):</span>
+						<input type="text" id="cscInput" disabled>
+					</label>
+					<label class="valueLabel" id="secColor">
+						<span>\( \sec(\theta) \):</span>
+						<input type="text" id="secInput" disabled>
+					</label>
+					<label class="valueLabel" id="cotColor">
+						<span>\( \cot(\theta) \):</span>
+						<input type="text" id="cotInput" disabled>
+					</label>
+					<label class="valueLabel" id="tanLineColor">
+						<span>\( \abs{ \mathrm{Tangent\ line} } \):</span>
+						<input type="text" id="tanLineInput" disabled>
+					</label>
+					
+					<hr>
+					<form oninput="sizeOutput.value = parseInt(sizeSlider.value);">
+						<p class="centeredText title">Canvas size (px):</p>
+						<br>
+						<input type="range" min="300" max="1000" step="100" value="800" id="sizeSlider">
+						<output for="sizeSlider" id="sizeOutput">800</output>
+					</form>
+					
+					<hr>
+					<form oninput="radiusOutput.value = 1 / (parseInt(radiusSlider.value) / 6);">
+						<p class="centeredText title">Circle radius (unit length):</p>
+						<br>
+						<input type="range" min="2" max="12" step="1" value="6" class="reverse" id="radiusSlider">
+						<output for="radiusSlider" id="radiusOutput">6</output>
+					</form>
+					
+					<hr>
+					<p class="centeredText title">Labels:</p>
+					<br>
+					<label>
+						Show labels:
+						<input type="checkbox" id="showLabels" checked>
+					</label>
+					<form oninput="fontOutput.value = parseInt(fontSlider.value);">
+						<p class="centeredText">Font size:</p>
+						<br>
+						<input type="range" min="10" max="20" step="1" value="15" id="fontSlider">
+						<output for="fontSlider" id="fontOutput">15</output>
+					</form>
+					
+					<hr>
+					<p class="centeredText title">Show segments:</p>
+					<details>
+						<summary>
+							Circle and radius:
+							<input type="checkbox" class="enable" checked>
+						</summary>
+						<label>
+							Circle:
+							<input type="checkbox" class="enable" id="enableCircle" checked>
+						</label>
+						<br>
+						<label>
+							Radius:
+							<input type="checkbox" class="enable" id="enableRadius" checked>
+						</label>
+					</details>
+					<details>
+						<summary>
+							Trig ratios:
+							<input type="checkbox" class="enable" checked>
+						</summary>
+						<label>
+							sin(θ):
+							<input type="checkbox" class="enable" id="enableSin" checked>
+						</label>
+						<br>
+						<label>
+							cos(θ):
+							<input type="checkbox" class="enable" id="enableCos" checked>
+						</label>
+						<br>
+						<label>
+							tan(θ):
+							<input type="checkbox" class="enable" id="enableTan" checked>
+						</label>
+					</details>
+					<details>
+						<summary>
+							Reciprocal trig ratios:
+							<input type="checkbox" class="enable" checked>
+						</summary>
+						<label>
+							csc(θ):
+							<input type="checkbox" class="enable" id="enableCsc" checked>
+						</label>
+						<br>
+						<label>
+							sec(θ):
+							<input type="checkbox" class="enable" id="enableSec" checked>
+						</label>
+						<br>
+						<label>
+							cot(θ):
+							<input type="checkbox" class="enable" id="enableCot" checked>
+						</label>
+					</details>
+					
+					<hr>
+					<p class="centeredText title">Common trig constants:</p>
+					<p>\( \sqrt{2} \) = <script>document.write(Math.sqrt(2));</script></p>
+					<p>\( \sqrt{2} \over 2 \) = <script>document.write(Math.sqrt(2) / 2);</script></p>
+					<p>\( \sqrt{2} \over 3 \) = <script>document.write(Math.sqrt(2) / 3);</script></p>
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script src="script.js"></script>
+</html>
